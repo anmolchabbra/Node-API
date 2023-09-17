@@ -2,20 +2,21 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
-
+const MONGO_URL = process.env.MONGO_URL
+const PORT = process.env.PORT || 3000
 
 const app = express()
 
 app.use(express.json())
 
 //Connection to Database
-mongoose.connect('mongodb+srv://admin:hFCAcMNKUXa1ij7u@curd-api.wjvox3l.mongodb.net/Node-API?retryWrites=true&w=majority')
+mongoose.connect(MONGO_URL)
 .then(() => {
     console.log('connected to MongoDB')
-    app.listen(3000, ()=> {
-        console.log('Node API is ruuning on port 3000')
+    app.listen(PORT, ()=> {
+        console.log('Node API is ruuning on port ${PORT}')
     })
-}).catch(() => {
+}).catch((error) => {
     console.log(error)
 })
 
