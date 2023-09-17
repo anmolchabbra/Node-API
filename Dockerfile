@@ -1,5 +1,6 @@
-FROM node:latest
+FROM node:lts-alpine
 WORKDIR /app
+ADD package*.json ./
+RUN npm install
 ADD . .
-RUN npm install package.json
 CMD node server.js
